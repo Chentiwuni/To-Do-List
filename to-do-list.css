@@ -1,0 +1,125 @@
+body {
+    background-color: #D6EAF8 !important;
+}
+.main {
+    width: 800px;
+    height: 600px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: auto;
+}
+
+.logo {
+    width: 500px;
+    height: 100px;
+    margin-top: 10px;
+    margin-left: 10px;
+    display: flex;
+}
+
+.logoText {
+    width: 200px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    color: #DE3163;
+}
+
+.logoImage {
+    width: 150px;
+    height: 100%;
+    margin-left: 100px;
+}
+
+.input-container {
+    display: flex;
+}
+
+.input-box {
+    width: 400px !important;
+    height: 50px;
+    margin-top: 60px;
+    margin-left: 40px;
+    font-size: 20px !important;
+}
+
+.add-btn {
+    width: 60px !important;
+    height: 50px;
+    margin-top: 60px;
+    background-color: #ff5f1f !important;
+    border: none;
+}
+
+li {
+    margin-top: 20px;
+    list-style: none;
+    font-size: 20px;
+    user-select: none;
+    cursor: pointer;
+    display: none;
+    padding-left: 50px;
+}
+
+li::before {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url(unchecked.png);
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    left: 30px;
+}
+
+.checked {
+    text-decoration: line-through orangered;
+}
+
+.checked::before {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url(checked.png);
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    left: 30px;
+}
+
+.fa-check {
+    padding-left: 10px;
+}
+
+ul {
+    position: relative;
+    margin-top: 50px !important;
+}
+
+
+span.closeTask {
+    color: red;
+    position: absolute;
+    right: 50px;
+    font-size: 25px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+span.closeTask:hover {
+    background-color: #AEB6BF;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: red;
+}
+
