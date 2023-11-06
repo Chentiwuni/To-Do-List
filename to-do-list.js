@@ -3,12 +3,14 @@ const listContainer = document.getElementById('listContainer');
 let editMode = false;
 let taskToEdit = null;
 
+
+//function for adding tasks and updating edited tasks
 function addTask() {
     if (inputField.value === "") {
         alert('You must write a task');
     } else {
         if (editMode) {
-            taskToEdit.firstChild.textContent = inputDisplay.value; // Update the text content of the first child (the text node) of the <li>
+            taskToEdit.firstChild.textContent = inputField.value; // Update the text content of the first child (the text node) of the <li>
             editMode = false;
             taskToEdit = null;
         } else {
