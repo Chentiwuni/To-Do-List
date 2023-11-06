@@ -111,6 +111,19 @@ span.closeTask {
     border-radius: 50%;
 }
 
+.edit {
+    position: absolute;
+    right: 100px;
+    font-size: 25px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.edit:hover {
+    background-color: #AEB6BF;
+}
+
 span.closeTask:hover {
     background-color: #AEB6BF;
 }
