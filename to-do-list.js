@@ -1,44 +1,33 @@
 const inputField = document.getElementById('inputField');
 const listContainer = document.getElementById('listContainer');
-let editMode = false;
-let taskToEdit = null;
-
 
 //function for adding tasks and updating edited tasks
 function addTask() {
     if (inputField.value === "") {
         alert('You must write a task');
     } else {
-        if (editMode) {
-            taskToEdit.firstChild.textContent = inputField.value; // Update the text content of the first child (the text node) of the <li>
-            editMode = false;
-            taskToEdit = null;
-        } else {
             let li = document.createElement("li");
             li.innerHTML = inputField.value;
             listContainer.appendChild(li);
-            let span0 = document.createElement("span");
+            let span0 = document.createElement("span"); //first span on the LI
             span0.className = "edit";
             span0.innerHTML = "\u270F";
             li.appendChild(span0);
-            let span = document.createElement("span");
+            let span = document.createElement("span"); //second span on the LI
             span.className = "closeTask";
             span.innerHTML = "\u2715";
             li.appendChild(span);
             li.style.display = "block";
         }
-    }
 
-    inputField.value = "";
+    inputField.value = ""; //set inputField to empty afte each time an li is created
     saveData();
 }
 
 listContainer.addEventListener('click', function (e) {
     if (e.target.tagName === "LI") {
-        if (!editMode) {
             e.target.classList.toggle("checked");
             saveData();
-        }
     } else if (e.target.className === "closeTask") {
         const confirmation = confirm("Are you sure you want to remove this task?");
         if (confirmation) {
@@ -46,9 +35,18 @@ listContainer.addEventListener('click', function (e) {
             saveData();
         }
     } else if (e.target.className === "edit") {
-        editMode = true;
-        taskToEdit = e.target.parentElement;
-        inputField.value = taskToEdit.firstChild.textContent; // Set the input field value to the text content of the <li>
+        let save = document.getElementById('editSave');
+        let taskToedit = e.target.parentElement;
+        let editField = document.getElementById('editField');
+        let editTask = document.getElementById('editTask');
+        editTask.style.display = "block";
+        editField.value = taskToedit.firstChild.textContent;
+        save.addEventListener('click', function () {
+            taskToedit.firstChild.textContent = editField.value;
+            editField.focus();
+            editTask.style.display = "none";
+
+        })
     }
 }, false);
 

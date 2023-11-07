@@ -136,3 +136,33 @@ a:hover {
     color: red;
 }
 
+.editTask {
+    position: absolute;
+    top: 350px;
+    left: 370px;
+    z-index: 3;
+    text-align: center;
+    padding-top: 20px;
+    width: 600px;
+    height: 100px;
+    border-radius: 10px;
+    background-color: turquoise;
+    border: none;
+    display: none;
+
+}
+
+.editField {
+    width: 500px;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid aquamarine;
+}
+
+.editSave {
+    height: 50px;
+    border-radius: 10px;
+    background-color: #ff5f1f;
+    border: none;
+}
+
