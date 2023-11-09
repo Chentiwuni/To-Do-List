@@ -2,15 +2,15 @@ body {
     background-color: #D6EAF8 !important;
 }
 .main {
-    width: 80%;
-    height: 600px;
+    width: 80vw;
+    height: 100vh;
     background-color: white;
     border-radius: 10px;
     overflow: auto;
 }
 
 .logo {
-    width: 500px;
+    width: 50%;
     height: 100px;
     margin-top: 10px;
     margin-left: 10px;
@@ -34,10 +34,15 @@ body {
 
 .input-container {
     display: flex;
+    width: 90%;
+}
+
+.listContainer {
+    width: 90%;
 }
 
 .input-box {
-    width: 400px !important;
+    width: 80% !important;
     height: 50px;
     margin-top: 60px;
     margin-left: 40px;
