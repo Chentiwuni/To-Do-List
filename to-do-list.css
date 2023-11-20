@@ -2,7 +2,7 @@ body {
     background-color: #D6EAF8 !important;
 }
 .main {
-    width: 80vw;
+    width: 100%vw;
     height: 100vh;
     background-color: white;
     border-radius: 10px;
@@ -118,8 +118,10 @@ span.closeTask {
 }
 
 .edit {
+    width: 30px;
+    height: 30px;
     position: absolute;
-    right: 20%;
+    right: 10%;
     height: 40px;
     border-radius: 50%;
 }
