@@ -150,7 +150,7 @@ a:hover {
     z-index: 3;
     text-align: center;
     padding-top: 20px;
-    width: 70%;
+    width: 80%;
     height: 100px;
     border-radius: 10px;
     background-color: turquoise;
@@ -167,7 +167,7 @@ a:hover {
 }
 
 .editSave {
-    height: 30px;
+    height: 50px;
 
     border-radius: 10px;
     background-color: #ff5f1f;
