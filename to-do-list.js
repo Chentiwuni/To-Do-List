@@ -24,6 +24,13 @@ function addTask() {
     saveData();
 }
 
+//event listener for "keyup" on inputField for the "enter" key
+inputField.addEventListener('keyup', function (event) {
+    if (event.key === 'Enter') {
+        addTask();
+    }
+});
+
 listContainer.addEventListener('click', function (e) {
     if (e.target.tagName === "LI") {
             e.target.classList.toggle("checked");
