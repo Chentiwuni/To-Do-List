@@ -52,7 +52,7 @@ listContainer.addEventListener('click', function (e) {
             taskToedit.firstChild.textContent = editField.value;
             editField.focus();
             editTask.style.display = "none";
-
+            saveData();
         })
     }
 }, false);
