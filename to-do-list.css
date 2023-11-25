@@ -32,22 +32,16 @@ body {
 }
 
 .input-container {
-    display: flex;
-    width: 100%;
+    width: 100vw;
 }
 
 .input-box {
-    width: 80% !important;
     height: 50px;
-    margin-top: 60px;
-    margin-left: 40px;
     font-size: 20px !important;
 }
 
 .add-btn {
-    width: 60px !important;
     height: 50px;
-    margin-top: 60px;
     background-color: #ff5f1f !important;
     border: none;
 }
