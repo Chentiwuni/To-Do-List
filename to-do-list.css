@@ -60,7 +60,7 @@ li {
     user-select: none;
     cursor: pointer;
     display: none;
-    padding-left: 5vw;
+    padding-left: 6vw;
 }
 
 li::before {
@@ -71,8 +71,8 @@ li::before {
     background-size: cover;
     background-position: center;
     left: 30px;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
 }
 
 .checked {
@@ -82,8 +82,8 @@ li::before {
 .checked::before {
     content: "";
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     background-image: url(checked.png);
     border-radius: 50%;
     background-size: cover;
@@ -166,4 +166,18 @@ a:hover {
     border-radius: 10px;
     background-color: #ff5f1f;
     border: none;
+}
+
+ /* Style for larger screens */
+ @media only screen and (min-width: 600px) {
+    .edit, .closeTask {
+        display: inline-block;
+    }
+}
+
+/* Style for smaller screens */
+@media only screen and (max-width: 600px) {
+    .edit, .closeTask {
+        display: none;
+    }
 }

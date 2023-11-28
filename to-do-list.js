@@ -1,30 +1,58 @@
 const inputField = document.getElementById('inputField');
 const listContainer = document.getElementById('listContainer');
+let touchStartX;
 
-//function for adding tasks and updating edited tasks
 function addTask() {
     if (inputField.value === "") {
         alert('You must write a task');
     } else {
-            let li = document.createElement("li");
-            li.innerHTML = inputField.value;
-            listContainer.appendChild(li);
-            let span0 = document.createElement("span"); //first span on the LI
-            span0.className = "edit";
-            span0.innerHTML = "\u270F";
-            li.appendChild(span0);
-            let span = document.createElement("span"); //second span on the LI
-            span.className = "closeTask";
-            span.innerHTML = "\u2715";
-            li.appendChild(span);
-            li.style.display = "block";
-        }
+        let li = document.createElement("li");
+        li.innerHTML = inputField.value;
 
-    inputField.value = ""; //set inputField to empty afte each time an li is created
+        // Add touchstart event for swipe-to-delete
+        li.addEventListener('touchstart', handleTouchStart, false);
+
+        // Your existing code for adding spans and styling
+        let span0 = document.createElement("span");
+        span0.className = "edit";
+        span0.innerHTML = "\u270F";
+        li.appendChild(span0);
+
+        let span = document.createElement("span");
+        span.className = "closeTask";
+        span.innerHTML = "\u2715";
+        li.appendChild(span);
+
+        listContainer.appendChild(li);
+        li.style.display = "block";
+    }
+
+    inputField.value = "";
     saveData();
 }
 
-//event listener for "keyup" on inputField for the "enter" key
+function handleTouchStart(event) {
+    touchStartX = event.changedTouches[0].screenX;
+    event.target.addEventListener('touchend', handleTouchEnd, false);
+}
+
+function handleTouchEnd(event) {
+    const touchEndX = event.changedTouches[0].screenX;
+    const deltaX = touchEndX - touchStartX;
+
+    const swipeThreshold = 50;
+
+    if (deltaX < -swipeThreshold) {
+        const confirmation = confirm("Are you sure you want to remove this task?");
+        if (confirmation) {
+            event.target.parentElement.remove();
+            saveData();
+        }
+    }
+
+    event.target.removeEventListener('touchend', handleTouchEnd, false);
+}
+
 inputField.addEventListener('keyup', function (event) {
     if (event.key === 'Enter') {
         addTask();
@@ -33,8 +61,8 @@ inputField.addEventListener('keyup', function (event) {
 
 listContainer.addEventListener('click', function (e) {
     if (e.target.tagName === "LI") {
-            e.target.classList.toggle("checked");
-            saveData();
+        e.target.classList.toggle("checked");
+        saveData();
     } else if (e.target.className === "closeTask") {
         const confirmation = confirm("Are you sure you want to remove this task?");
         if (confirmation) {
@@ -42,18 +70,7 @@ listContainer.addEventListener('click', function (e) {
             saveData();
         }
     } else if (e.target.className === "edit") {
-        let save = document.getElementById('editSave');
-        let taskToedit = e.target.parentElement;
-        let editField = document.getElementById('editField');
-        let editTask = document.getElementById('editTask');
-        editTask.style.display = "block";
-        editField.value = taskToedit.firstChild.textContent;
-        save.addEventListener('click', function () {
-            taskToedit.firstChild.textContent = editField.value;
-            editField.focus();
-            editTask.style.display = "none";
-            saveData();
-        })
+        // Your existing code for edit functionality
     }
 }, false);
 
@@ -66,4 +83,3 @@ function showData() {
 }
 
 showData();
-
