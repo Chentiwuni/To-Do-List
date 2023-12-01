@@ -42,10 +42,10 @@ function handleTouchEnd(event) {
 
     const swipeThreshold = 50;
 
-    if (deltaX < -swipeThreshold) {
+    if (deltaX > -swipeThreshold) {
         const confirmation = confirm("Are you sure you want to remove this task?");
         if (confirmation) {
-            event.target.parentElement.remove();
+            event.target.remove();
             saveData();
         }
     }
