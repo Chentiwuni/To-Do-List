@@ -50,7 +50,6 @@ function handleTouchEnd(event) {
         }
     }
 
-    event.target.removeEventListener('touchend', handleTouchEnd, false);
 }
 
 inputField.addEventListener('keyup', function (event) {
