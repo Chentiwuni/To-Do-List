@@ -1,84 +1,62 @@
-const inputField = document.getElementById('inputField');
-const listContainer = document.getElementById('listContainer');
-let touchStartX;
+let taskField = document.getElementById('taskField');
+let taskAmount = document.getElementById('amountField');
+let btn = document.getElementById('btn');
+let taskContainer = document.getElementById('taskContainer');
 
+//function for adding tasks
 function addTask() {
-    if (inputField.value === "") {
-        alert('You must write a task');
+    if (taskField.value === "") {
+        alert ('Task field is empty');
     } else {
-        let li = document.createElement("li");
-        li.innerHTML = inputField.value;
+        let taskItem = document.createElement("LI");
+        taskItem.className = "taskItems";
 
-        // Add touchstart event for swipe-to-delete
-        li.addEventListener('touchstart', handleTouchStart, false);
+        let taskContent = document.createElement("span");
+        taskContent.className = "taskContent";
+        taskContent.innerHTML = taskField.value;
 
-        // Your existing code for adding spans and styling
-        let span0 = document.createElement("span");
-        span0.className = "edit";
-        span0.innerHTML = "\u270F";
-        li.appendChild(span0);
+        let taskDecoration = document.createElement("span");
+        taskDecoration.className = "taskDecoration";
 
-        let span = document.createElement("span");
-        span.className = "closeTask";
-        span.innerHTML = "\u2715";
-        li.appendChild(span);
+        let amountDisplay = document.createElement("div");
+        amountDisplay.className = "amountDisplay";
+        amountDisplay.innerHTML = taskAmount.value;
 
-        listContainer.appendChild(li);
-        li.style.display = "block";
+        let editTask = document.createElement("img");
+        editTask.className = "edit";
+        editTask.src = "edit.png";
+
+        let closeTask = document.createElement("img");
+        closeTask.className = "closeTask";
+        closeTask.src = "closeTask.png";
+
+        taskItem.appendChild(taskContent);
+        taskItem.appendChild(amountDisplay);
+        taskItem.appendChild(editTask);
+        taskItem.appendChild(closeTask);
+
+        taskContainer.appendChild(taskItem);
+
+
+        taskItem.style.display = "inline-block";
+
     }
 
-    inputField.value = "";
-    saveData();
-}
-
-function handleTouchStart(event) {
-    touchStartX = event.changedTouches[0].screenX;
-    event.target.addEventListener('touchend', handleTouchEnd, false);
-}
-
-function handleTouchEnd(event) {
-    const touchEndX = event.changedTouches[0].screenX;
-    const deltaX = touchEndX - touchStartX;
-
-    const swipeThreshold = 50;
-
-    if (deltaX > swipeThreshold) {
-        const confirmation = confirm("Are you sure you want to remove this task?");
-        if (confirmation) {
-            event.target.parentElement.remove();
-            saveData();
-        }
-    }
+    taskField.value = "";
+    taskAmount.value = "";
 
 }
 
-inputField.addEventListener('keyup', function (event) {
-    if (event.key === 'Enter') {
-        addTask();
-    }
-});
-
-listContainer.addEventListener('click', function (e) {
-    if (e.target.tagName === "LI") {
+taskContainer.addEventListener('click', function(e){
+    if (e.target.tagName === "LI" || e.target.tagName === "SPAN") {
         e.target.classList.toggle("checked");
-        saveData();
-    } else if (e.target.className === "closeTask") {
-        const confirmation = confirm("Are you sure you want to remove this task?");
+        e.target.classList.toggle("taskDecoration");
+    }
+
+    else if (e.target.className === "closeTask") {
+        const confirmation = confirm("Are you sure you want to remove this task ?");
         if (confirmation) {
             e.target.parentElement.remove();
-            saveData();
         }
-    } else if (e.target.className === "edit") {
-        // Your existing code for edit functionality
     }
-}, false);
-
-function saveData() {
-    localStorage.setItem("data", listContainer.innerHTML);
-}
-
-function showData() {
-    listContainer.innerHTML = localStorage.getItem("data");
-}
-
-showData();
+})
