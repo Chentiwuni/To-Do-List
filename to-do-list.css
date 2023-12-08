@@ -5,8 +5,15 @@ body {
 
 .container {
     width: 90vw;
-    height: 90vw;
+    height: 500px;
     background: white;
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        height: 600px;
+    }
+    
 }
 
 .logo {
@@ -27,6 +34,7 @@ body {
 @media screen and (min-width: 768px) {
     .amountField {
         width: 6vw;
+        margin-left: 18px;
     }
     
 }
@@ -49,17 +57,20 @@ body {
     font-weight: bold;
 }
 
-.taskContainer {
-    width: 100%;
+@media screen and (min-width: 768px) {
+    .btn {
+        margin-left: 5px;
+    }
+    
 }
 
-ul {
+.taskContainer {
+    width: 100%;
 }
 
 li {
     display: none;
     list-style: none;
-    width: 100vw;
     margin-top: 5px;
     padding-top: 0;
     cursor: pointer;
@@ -67,9 +78,10 @@ li {
 
 .taskContent {
     display:inline-block;
-    width: 65vw;
+    width: 63vw;
     font-size: 20px;
     margin-left: 5px;
+    word-wrap: break-word;
 }
 
 @media screen and (min-width: 768px) {
@@ -87,7 +99,7 @@ li::before {
     border-radius: 50%;
     background-size: cover;
     background-position: center;
-    left: 8vw;
+    left: 9vw;
     width: 25px;
     height: 25px;
 }
@@ -103,7 +115,7 @@ li::before {
     border-radius: 50%;
     background-size: cover;
     background-position: center;
-    left: 8vw;
+    left: 9vw;
     width: 25px;
     height: 25px;
 }
@@ -115,20 +127,21 @@ li::before {
 .amountDisplay {
     border-radius: 5px;
     text-align: center;
-    background: #9FE2BF;
+    background: #F2F4F4;
     display: inline-block;
     width: 12vw;
     font-size: 20px;
-    font-weight: bolder;
+    margin-left: 2px;
 }
 
 @media  screen and (min-width: 768px) {
     .amountDisplay {
         width: 5vw;
+        margin-left: 5px;
     }
 }
 
-.edit {
+.editTask {
     margin-left: 2vw;
     display: none;
 }
@@ -139,9 +152,89 @@ li::before {
 }
 
 @media screen and (min-width: 768px) {
-    .edit, .closeTask {
+    .editTask, .closeTask {
         display: inline-block;
         cursor: pointer;
     }
+}
+
+.editBackground {
+    width: 80vw;
+    height: 20vw;
+    background:#ccff00 ;
+    position: absolute;
+    left: 10vw;
+    top: 35vw;
+    z-index: 1;
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .editBackground {
+        width: 80vw;
+        height: 10vw;
+        left: 10vw;
+        top: 10vw;
+    }  
+}
+
+.editContainer {
+    position: absolute;
+    top: 37vw;
+    left: 13vw;
+    width: 75vw;
+    z-index: 2;
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .editContainer {
+        top: 13vw;
+        left: 13vw;
+    }
+    
+}
+
+.taskEditField {
+    border-radius: 5px;
+    width: 75vw;
+    height: 40px;
+    display: inline-block;
+    font-size: 25px;
+}
+
+@media screen and (min-width: 768px) {
+    .taskEditField {
+        width: 60vw;
+        display: inline-block;
+    }
+    
+}
+
+.amountEditField {
+    border-radius: 5px;
+    width: 15vw;
+    height: 40px;
+    display: inline-block;
+}
+
+@media screen and (min-width: 768px) {
+    .amountEditField {
+        width: 7vw;
+        display: inline-block;
+    }
+    
+}
+
+.editSaveBtn {
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    background: #ff4500;
+    border-radius: 5px;
+    border: none;
+    width: 60px;
+    height: 40px;
+    display: inline-block;
 }
 

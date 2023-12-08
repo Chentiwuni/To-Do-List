@@ -23,7 +23,7 @@ function addTask() {
         amountDisplay.innerHTML = taskAmount.value;
 
         let editTask = document.createElement("img");
-        editTask.className = "edit";
+        editTask.className = "editTask";
         editTask.src = "edit.png";
 
         let closeTask = document.createElement("img");
@@ -58,5 +58,32 @@ taskContainer.addEventListener('click', function(e){
         if (confirmation) {
             e.target.parentElement.remove();
         }
+    }
+
+    else if (e.target.className === "editTask") {
+        let editBackground = document.getElementById('editBackground');
+        let editContainer = document.getElementById('editContainer');
+        let taskEditField = document.getElementById('taskEditField');
+        let amountEditField = document.getElementById('amountEditField');
+        let editSaveBtn = document.getElementById('editSaveBtn');
+        let taskToEdit = e.target.parentElement;
+        
+        editBackground.style.display = "block";
+        editContainer.style.display = "block";
+        taskEditField.value = taskToEdit.querySelector('.taskContent').textContent;
+        amountEditField.value = taskToEdit.querySelector('.amountDisplay').textContent;
+
+        editSaveBtn.addEventListener('click', function() {
+            taskToEdit.querySelector('.taskContent').textContent = taskEditField.value;
+            taskToEdit.querySelector('.amountDisplay').textContent = amountEditField.value;
+
+            editBackground.style.display = "none";
+            editContainer.style.display = "none";
+
+        })
+        
+
+
+
     }
 })

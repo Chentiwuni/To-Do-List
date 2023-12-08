@@ -8,13 +8,13 @@
     <link href="to-do-list.css" rel="stylesheet">
 </head>
   <body>
-    <div class="container border rounded mt-5">
+    <div class="container border rounded mt-5 overflow-auto">
         <div class="logo mx-auto d-md-inline-block mt-2"><img src="icon.png"></div>
         <div class="logoText mx-auto d-md-inline-block mt-2 mt-md-0 text-center">TO-DO-LIST</div>
 
         <div class="row inputContainer align-items-start">
-            <div class="col-12 col-md-7 mt-2"> <input type="text" class="taskField border rounded rounded-md-start" id="taskField" placeholder="Enter a task"> </div>
-            <div class="col-12 col-md-1 mt-2"> <input type="text" class="amountField border rounded rounded-md-end" id="amountField" placeholder="Amt/Qty"> </div>
+            <div class="col-12 col-md-7 mt-2"> <input type="text" class="form-control taskField border rounded rounded-md-start" id="taskField" placeholder="Enter a task"> </div>
+            <div class="col-12 col-md-1 mt-2"> <input type="text" class="form-control amountField border rounded rounded-md-end" id="amountField" placeholder="Amt/Qty"> </div>
             <div class="col-12 col-md-1 mt-2"> <button type="button" class="btn btn-primary" id="btn" onclick="addTask()">ADD</button> </div>
             <div class="col-12  col-md-3"></div>
         </div>
@@ -23,6 +23,13 @@
           <li class="checked" id="checked"></li>
         </ul>
 
+        <div class="editBackground border rounded" id="editBackground"></div>
+
+        <div class="editContainer" id="editContainer">
+          <input type="text" class="taskEditField" id="taskEditField">
+          <input type="text" class="amountEditField" id="amountEditField">
+          <button type="submit" class="editSaveBtn" id="editSaveBtn">Save</button>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="to-do-list.js"></script>
