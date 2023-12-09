@@ -1,69 +1,104 @@
-const inputField = document.getElementById('inputField');
-const listContainer = document.getElementById('listContainer');
+let taskField = document.getElementById('taskField');
+let taskAmount = document.getElementById('amountField');
+let btn = document.getElementById('btn');
+let taskContainer = document.getElementById('taskContainer');
 
-//function for adding tasks and updating edited tasks
-function addTask() {
-    if (inputField.value === "") {
-        alert('You must write a task');
-    } else {
-            let li = document.createElement("li");
-            li.innerHTML = inputField.value;
-            listContainer.appendChild(li);
-            let span0 = document.createElement("span"); //first span on the LI
-            span0.className = "edit";
-            span0.innerHTML = "\u270F";
-            li.appendChild(span0);
-            let span = document.createElement("span"); //second span on the LI
-            span.className = "closeTask";
-            span.innerHTML = "\u2715";
-            li.appendChild(span);
-            li.style.display = "block";
-        }
+let touchStartX = 0;
+let touchEndX = 0;
 
-    inputField.value = ""; //set inputField to empty afte each time an li is created
-    saveData();
-}
-
-//event listener for "keyup" on inputField for the "enter" key
-inputField.addEventListener('keyup', function (event) {
-    if (event.key === 'Enter') {
-        addTask();
-    }
+taskContainer.addEventListener('touchstart', function(e) {
+    touchStartX = e.touches[0].clientX;
 });
 
-listContainer.addEventListener('click', function (e) {
-    if (e.target.tagName === "LI") {
-            e.target.classList.toggle("checked");
-            saveData();
+taskContainer.addEventListener('touchend', function(e) {
+    touchEndX = e.changedTouches[0].clientX;
+    handleSwipe();
+});
+
+//function for adding tasks
+function addTask() {
+    if (taskField.value === "") {
+        alert ('Task field is empty');
+    } else {
+        let taskItem = document.createElement("LI");
+        taskItem.className = "taskItems";
+
+        let taskContent = document.createElement("span");
+        taskContent.className = "taskContent";
+        taskContent.innerHTML = taskField.value;
+
+        let taskDecoration = document.createElement("span");
+        taskDecoration.className = "taskDecoration";
+
+        let amountDisplay = document.createElement("div");
+        amountDisplay.className = "amountDisplay";
+        amountDisplay.innerHTML = taskAmount.value;
+
+        let editTask = document.createElement("img");
+        editTask.className = "editTask";
+        editTask.src = "edit.png";
+
+        let closeTask = document.createElement("img");
+        closeTask.className = "closeTask";
+        closeTask.src = "closeTask.png";
+
+        taskItem.appendChild(taskContent);
+        taskItem.appendChild(amountDisplay);
+        taskItem.appendChild(editTask);
+        taskItem.appendChild(closeTask);
+
+        taskContainer.appendChild(taskItem);
+
+        taskItem.style.display = "inline-block";
+    }
+
+    taskField.value = "";
+    taskAmount.value = "";
+}
+
+function handleSwipe() {
+    const swipeThreshold = 50; // Adjust this value based on your preference
+
+    if (touchEndX - touchStartX > swipeThreshold) {
+        // Swipe right detected, delete the task
+        const taskToRemove = document.elementFromPoint(touchStartX, touchEndX);
+        if (taskToRemove && taskToRemove.tagName === "LI") {
+            const confirmation = confirm("Are you sure you want to remove this task?");
+            if (confirmation) {
+                taskToRemove.remove();
+            }
+        }
+    }
+}
+
+taskContainer.addEventListener('click', function(e) {
+    if (e.target.tagName === "LI" || e.target.tagName === "SPAN") {
+        e.target.classList.toggle("checked");
+        e.target.classList.toggle("taskDecoration");
     } else if (e.target.className === "closeTask") {
         const confirmation = confirm("Are you sure you want to remove this task?");
         if (confirmation) {
             e.target.parentElement.remove();
-            saveData();
         }
-    } else if (e.target.className === "edit") {
-        let save = document.getElementById('editSave');
-        let taskToedit = e.target.parentElement;
-        let editField = document.getElementById('editField');
-        let editTask = document.getElementById('editTask');
-        editTask.style.display = "block";
-        editField.value = taskToedit.firstChild.textContent;
-        save.addEventListener('click', function () {
-            taskToedit.firstChild.textContent = editField.value;
-            editField.focus();
-            editTask.style.display = "none";
+    } else if (e.target.className === "editTask") {
+        let editBackground = document.getElementById('editBackground');
+        let editContainer = document.getElementById('editContainer');
+        let taskEditField = document.getElementById('taskEditField');
+        let amountEditField = document.getElementById('amountEditField');
+        let editSaveBtn = document.getElementById('editSaveBtn');
+        let taskToEdit = e.target.parentElement;
 
-        })
+        editBackground.style.display = "block";
+        editContainer.style.display = "block";
+        taskEditField.value = taskToEdit.querySelector('.taskContent').textContent;
+        amountEditField.value = taskToEdit.querySelector('.amountDisplay').textContent;
+
+        editSaveBtn.addEventListener('click', function() {
+            taskToEdit.querySelector('.taskContent').textContent = taskEditField.value;
+            taskToEdit.querySelector('.amountDisplay').textContent = amountEditField.value;
+
+            editBackground.style.display = "none";
+            editContainer.style.display = "none";
+        });
     }
-}, false);
-
-function saveData() {
-    localStorage.setItem("data", listContainer.innerHTML);
-}
-
-function showData() {
-    listContainer.innerHTML = localStorage.getItem("data");
-}
-
-showData();
-
+});

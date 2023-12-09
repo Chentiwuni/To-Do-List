@@ -1,84 +1,107 @@
 body {
-    background-color: #D6EAF8 !important;
+    font-family: 'Courier New', Courier, monospace;
+    background: #D6EAF8;
 }
-.main {
-    width: 100%vw;
-    height: 100vh;
-    background-color: white;
-    border-radius: 10px;
-    overflow: auto;
+
+.container {
+    width: 90vw;
+    height: 500px;
+    background: white;
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        height: 600px;
+    }
+    
 }
 
 .logo {
-    width: 50%;
-    height: 100px;
-    margin-top: 10px;
-    margin-left: 10px;
-    display: flex;
+    width: 200px;
 }
 
 .logoText {
-    width: 200px;
-    height: 100%;
-    align-items: center;
-    font-size: 25px;
+    width: 400px;
+    font-size: 4vw;
     color: #DE3163;
 }
 
-.logoImage {
-    width: 150px;
-    height: 100%;
-    margin-left: 100px;
+.amountField {
+    width: 15vw;
+    height: 40px;
 }
 
-.input-container {
-    display: flex;
+@media screen and (min-width: 768px) {
+    .amountField {
+        width: 6vw;
+        margin-left: 18px;
+    }
+    
+}
+
+.taskField {
+    width: 70vw;
+    height: 40px;
+}
+
+@media screen and (min-width: 768px) {
+    .taskField {
+        width: 50vw;
+    }
+}
+
+.btn {
+    width: 60px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+    .btn {
+        margin-left: 5px;
+    }
+    
+}
+
+.taskContainer {
     width: 100%;
-}
-
-.input-box {
-    width: 80% !important;
-    height: 50px;
-    margin-top: 60px;
-    margin-left: 40px;
-    font-size: 20px !important;
-}
-
-.add-btn {
-    width: 60px !important;
-    height: 50px;
-    margin-top: 60px;
-    background-color: #ff5f1f !important;
-    border: none;
-}
-
-.listContainer {
-    width: 100%;
-    position: relative;
 }
 
 li {
-    margin-top: 20px;
-    list-style: none;
-    font-size: 20px;
-    user-select: none;
-    cursor: pointer;
     display: none;
-    padding-left: 30px;
+    list-style: none;
+    margin-top: 5px;
+    padding-top: 0;
+    cursor: pointer;
 }
+
+.taskContent {
+    display:inline-block;
+    width: 63vw;
+    font-size: 20px;
+    margin-left: 5px;
+    word-wrap: break-word;
+}
+
+@media screen and (min-width: 768px) {
+
+    .taskContent {
+        width: 60vw;
+    }
+}
+
 
 li::before {
     content: "";
     position: absolute;
-    width: 30px;
-    height: 30px;
     background-image: url(unchecked.png);
     border-radius: 50%;
     background-size: cover;
     background-position: center;
-    left: 30px;
-    width: 30px;
-    height: 30px;
+    left: 9vw;
+    width: 25px;
+    height: 25px;
 }
 
 .checked {
@@ -88,89 +111,132 @@ li::before {
 .checked::before {
     content: "";
     position: absolute;
-    width: 20px;
-    height: 20px;
     background-image: url(checked.png);
     border-radius: 50%;
     background-size: cover;
     background-position: center;
-    left: 30px;
+    left: 9vw;
+    width: 25px;
+    height: 25px;
 }
 
-.fa-check {
-    padding-left: 10px;
+.taskDecoration {
+    text-decoration: line-through orangered;
 }
 
-ul {
-    position: relative;
-    margin-top: 50px !important;
-}
-
-
-span.closeTask {
-    color: red;
-    position: absolute;
-    right: 1%;
-    font-size: 25px;
-    width: 40px;
-    height: 40px;
+.amountDisplay {
+    border-radius: 5px;
     text-align: center;
-    border-radius: 50%;
+    background: #F2F4F4;
+    display: inline-block;
+    width: 12vw;
+    font-size: 20px;
+    margin-left: 2px;
 }
 
-.edit {
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    right: 10%;
-    height: 40px;
-    border-radius: 50%;
-}
-
-.edit:hover {
-    background-color: #AEB6BF;
-}
-
-span.closeTask:hover {
-    background-color: #AEB6BF;
-}
-
-a {
-    text-decoration: none;
-}
-
-a:hover {
-    color: red;
+@media  screen and (min-width: 768px) {
+    .amountDisplay {
+        width: 5vw;
+        margin-left: 5px;
+    }
 }
 
 .editTask {
-    position: absolute;
-    top: 350px;
-    left: 10%;
-    z-index: 3;
-    text-align: center;
-    padding-top: 20px;
-    width: 80%;
-    height: 100px;
-    border-radius: 10px;
-    background-color: turquoise;
-    border: none;
+    margin-left: 2vw;
     display: none;
-
 }
 
-.editField {
-    width: 80%;
-    height: 50px;
-    border-radius: 10px;
-    border: 1px solid aquamarine;
+.closeTask {
+    margin-left: 1vw;
+    display: none;
 }
 
-.editSave {
-    height: 50px;
+@media screen and (min-width: 768px) {
+    .editTask, .closeTask {
+        display: inline-block;
+        cursor: pointer;
+    }
+}
 
-    border-radius: 10px;
-    background-color: #ff5f1f;
+.editBackground {
+    width: 80vw;
+    height: 20vw;
+    background:#e3dac9 ;
+    position: absolute;
+    left: 10vw;
+    top: 35vw;
+    z-index: 1;
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .editBackground {
+        width: 80vw;
+        height: 10vw;
+        left: 10vw;
+        top: 10vw;
+    }  
+}
+
+.editContainer {
+    position: absolute;
+    top: 37vw;
+    left: 13vw;
+    width: 75vw;
+    z-index: 2;
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .editContainer {
+        top: 13vw;
+        left: 13vw;
+    }
+    
+}
+
+.taskEditField {
+    border-radius: 5px;
+    width: 75vw;
+    height: 40px;
+    display: inline-block;
+    font-size: 20px;
     border: none;
 }
 
+@media screen and (min-width: 768px) {
+    .taskEditField {
+        width: 60vw;
+        display: inline-block;
+    }
+    
+}
+
+.amountEditField {
+    border-radius: 5px;
+    width: 15vw;
+    height: 40px;
+    display: inline-block;
+    font-size: 20px;
+    border: none;
+}
+
+@media screen and (min-width: 768px) {
+    .amountEditField {
+        width: 7vw;
+        display: inline-block;
+    }
+    
+}
+
+.editSaveBtn {
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    background: #ff4500;
+    border-radius: 5px;
+    border: none;
+    width: 60px;
+    height: 40px;
+    display: inline-block;
+}
