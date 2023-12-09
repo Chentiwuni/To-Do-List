@@ -27,7 +27,7 @@ body {
 }
 
 .amountField {
-    width: 15vw;
+    width: 30vw;
     height: 40px;
 }
 
@@ -78,7 +78,7 @@ li {
 
 .taskContent {
     display:inline-block;
-    width: 63vw;
+    width: 50vw;
     font-size: 20px;
     margin-left: 5px;
     word-wrap: break-word;
