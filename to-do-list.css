@@ -161,7 +161,7 @@ li::before {
 .editBackground {
     width: 80vw;
     height: 20vw;
-    background:#ccff00 ;
+    background:#e3dac9 ;
     position: absolute;
     left: 10vw;
     top: 35vw;
@@ -200,7 +200,8 @@ li::before {
     width: 75vw;
     height: 40px;
     display: inline-block;
-    font-size: 25px;
+    font-size: 20px;
+    border: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -216,6 +217,8 @@ li::before {
     width: 15vw;
     height: 40px;
     display: inline-block;
+    font-size: 20px;
+    border: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -237,4 +240,3 @@ li::before {
     height: 40px;
     display: inline-block;
 }
-

@@ -39,7 +39,6 @@ function addTask() {
 
 
         taskItem.style.display = "inline-block";
-
     }
 
     taskField.value = "";
@@ -57,6 +56,8 @@ taskContainer.addEventListener('click', function(e){
         const confirmation = confirm("Are you sure you want to remove this task ?");
         if (confirmation) {
             e.target.parentElement.remove();
+
+            
         }
     }
 

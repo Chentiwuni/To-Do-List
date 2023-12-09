@@ -13,8 +13,8 @@
         <div class="logoText mx-auto d-md-inline-block mt-2 mt-md-0 text-center">TO-DO-LIST</div>
 
         <div class="row inputContainer align-items-start">
-            <div class="col-12 col-md-7 mt-2"> <input type="text" class="form-control taskField border rounded rounded-md-start" id="taskField" placeholder="Enter a task"> </div>
-            <div class="col-12 col-md-1 mt-2"> <input type="text" class="form-control amountField border rounded rounded-md-end" id="amountField" placeholder="Amt/Qty"> </div>
+            <div class="col-12 col-md-7 mt-2"> <input type="text" class="form-control taskField border rounded rounded-md-start" id="taskField" placeholder="Enter a task" maxlength="65"> </div>
+            <div class="col-12 col-md-1 mt-2"> <input type="text" class="form-control amountField border rounded rounded-md-end" id="amountField" placeholder="Amt/Qty" maxlength="5"> </div>
             <div class="col-12 col-md-1 mt-2"> <button type="button" class="btn btn-primary" id="btn" onclick="addTask()">ADD</button> </div>
             <div class="col-12  col-md-3"></div>
         </div>
@@ -26,8 +26,8 @@
         <div class="editBackground border rounded" id="editBackground"></div>
 
         <div class="editContainer" id="editContainer">
-          <input type="text" class="taskEditField" id="taskEditField">
-          <input type="text" class="amountEditField" id="amountEditField">
+          <input type="text" class="taskEditField" id="taskEditField" maxlength="65">
+          <input type="text" class="amountEditField" id="amountEditField" maxlength="5">
           <button type="submit" class="editSaveBtn" id="editSaveBtn">Save</button>
         </div>
     </div>
