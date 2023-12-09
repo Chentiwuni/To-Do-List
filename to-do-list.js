@@ -3,6 +3,18 @@ let taskAmount = document.getElementById('amountField');
 let btn = document.getElementById('btn');
 let taskContainer = document.getElementById('taskContainer');
 
+let touchStartX = 0;
+let touchEndX = 0;
+
+taskContainer.addEventListener('touchstart', function(e) {
+    touchStartX = e.touches[0].clientX;
+});
+
+taskContainer.addEventListener('touchend', function(e) {
+    touchEndX = e.changedTouches[0].clientX;
+    handleSwipe();
+});
+
 //function for adding tasks
 function addTask() {
     if (taskField.value === "") {
@@ -37,38 +49,45 @@ function addTask() {
 
         taskContainer.appendChild(taskItem);
 
-
         taskItem.style.display = "inline-block";
     }
 
     taskField.value = "";
     taskAmount.value = "";
-
 }
 
-taskContainer.addEventListener('click', function(e){
+function handleSwipe() {
+    const swipeThreshold = 50; // Adjust this value based on your preference
+
+    if (touchEndX - touchStartX > swipeThreshold) {
+        // Swipe right detected, delete the task
+        const taskToRemove = document.elementFromPoint(touchStartX, touchEndX);
+        if (taskToRemove && taskToRemove.tagName === "LI") {
+            const confirmation = confirm("Are you sure you want to remove this task?");
+            if (confirmation) {
+                taskToRemove.remove();
+            }
+        }
+    }
+}
+
+taskContainer.addEventListener('click', function(e) {
     if (e.target.tagName === "LI" || e.target.tagName === "SPAN") {
         e.target.classList.toggle("checked");
         e.target.classList.toggle("taskDecoration");
-    }
-
-    else if (e.target.className === "closeTask") {
-        const confirmation = confirm("Are you sure you want to remove this task ?");
+    } else if (e.target.className === "closeTask") {
+        const confirmation = confirm("Are you sure you want to remove this task?");
         if (confirmation) {
             e.target.parentElement.remove();
-
-            
         }
-    }
-
-    else if (e.target.className === "editTask") {
+    } else if (e.target.className === "editTask") {
         let editBackground = document.getElementById('editBackground');
         let editContainer = document.getElementById('editContainer');
         let taskEditField = document.getElementById('taskEditField');
         let amountEditField = document.getElementById('amountEditField');
         let editSaveBtn = document.getElementById('editSaveBtn');
         let taskToEdit = e.target.parentElement;
-        
+
         editBackground.style.display = "block";
         editContainer.style.display = "block";
         taskEditField.value = taskToEdit.querySelector('.taskContent').textContent;
@@ -80,11 +99,6 @@ taskContainer.addEventListener('click', function(e){
 
             editBackground.style.display = "none";
             editContainer.style.display = "none";
-
-        })
-        
-
-
-
+        });
     }
-})
+});
