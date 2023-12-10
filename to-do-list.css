@@ -27,20 +27,20 @@ body {
 }
 
 .amountField {
-    width: 30vw;
+    width: 100px;
     height: 40px;
 }
 
 @media screen and (min-width: 768px) {
     .amountField {
-        width: 6vw;
-        margin-left: 18px;
+        width: 8vw;
+        margin-left: 28px;
     }
     
 }
 
 .taskField {
-    width: 70vw;
+    width: 80vw;
     height: 40px;
 }
 
@@ -59,7 +59,7 @@ body {
 
 @media screen and (min-width: 768px) {
     .btn {
-        margin-left: 5px;
+        margin-left: 40px;
     }
     
 }
@@ -78,7 +78,7 @@ li {
 
 .taskContent {
     display:inline-block;
-    width: 50vw;
+    width: 55vw;
     font-size: 20px;
     margin-left: 5px;
     word-wrap: break-word;
@@ -87,7 +87,7 @@ li {
 @media screen and (min-width: 768px) {
 
     .taskContent {
-        width: 60vw;
+        width: 50vw;
     }
 }
 
@@ -99,9 +99,16 @@ li::before {
     border-radius: 50%;
     background-size: cover;
     background-position: center;
-    left: 9vw;
+    left: 5vw;
     width: 25px;
     height: 25px;
+}
+
+@media screen and (min-width: 768px) {
+    li::before {
+        left: 10vw;
+    }
+    
 }
 
 .checked {
@@ -115,9 +122,15 @@ li::before {
     border-radius: 50%;
     background-size: cover;
     background-position: center;
-    left: 9vw;
+    left: 5vw;
     width: 25px;
     height: 25px;
+}
+
+@media screen and (min-width: 768px) {
+    .checked::before {
+        left:10vw;
+    }
 }
 
 .taskDecoration {
@@ -131,13 +144,13 @@ li::before {
     display: inline-block;
     width: 12vw;
     font-size: 20px;
-    margin-left: 2px;
+    margin-left: 10vw;
 }
 
 @media  screen and (min-width: 768px) {
     .amountDisplay {
-        width: 5vw;
-        margin-left: 5px;
+        width: 7vw;
+        margin-left: 5vw;
     }
 }
 
