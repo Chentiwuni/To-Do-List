@@ -78,7 +78,7 @@ li {
 
 .taskContent {
     display:inline-block;
-    width: 53vw;
+    width: 55vw;
     font-size: 20px;
     margin-left: 5px;
     word-wrap: break-word;
@@ -144,7 +144,7 @@ li::before {
     display: inline-block;
     width: 12vw;
     font-size: 20px;
-    margin-left: 7vw;
+    margin-left: 10vw;
 }
 
 @media  screen and (min-width: 768px) {
