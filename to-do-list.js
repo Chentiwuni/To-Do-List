@@ -3,7 +3,7 @@ let btn = document.getElementById('btn');
 let taskContainer = document.getElementById('taskContainer');
 let taskList = document.getElementById('taskList');
 
-//setting taskToEdit, editBackground,editField and editImageDiv global
+//setting taskToEdit, editBackground,editField and editImageDiv globally
 let taskToEdit;
 let editBackground;
 let editImageDiv;
