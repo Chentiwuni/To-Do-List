@@ -64,12 +64,15 @@ function addTask() {
     }
 
     taskField.value = "";
+    saveData();
 }
 
 //function for closing task
 function handleTaskContentClick(e) {
     if (e.target.classList.contains("taskContent")) {
         e.target.classList.toggle("taskComplete");
+
+        saveData();
     }
 }
 
@@ -105,9 +108,21 @@ function handleCloseTaskClick(e) {
         const confirmation = confirm("Remove this task ?");
         if (confirmation) {
             //accessing the close image div
-        const closeImageDiv = e.target.parentElement.parentElement;
+            const closeImageDiv = e.target.parentElement;
 
-        closeImageDiv.parentElement.remove();
+            //accessing taskContent
+            const taskContent = closeImageDiv.previousElementSibling.previousElementSibling;
+    
+            //accessing editTask
+            const editTask = closeImageDiv.previousElementSibling;
+    
+            //remove taskContent, editTask and closeTask
+            taskList.removeChild(taskContent);
+            taskList.removeChild(editTask);
+            taskList.removeChild(closeImageDiv);
+    
+        saveData();
+
         }
 
     }
@@ -129,6 +144,8 @@ saveEdit.addEventListener('click', function() {
 
     //hide back edit backgroun
     editBackground.classList.add('hidden');
+
+    saveData();
 })
 
 //event listener for "keyup" on inputField for the "enter" key
@@ -137,4 +154,16 @@ taskField.addEventListener('keyup', function (event) {
         addTask();
     }
 });
+
+//function to save data to the browser's local storage
+function saveData() {
+    localStorage.setItem("data", taskList.innerHTML);
+}
+
+//function to show data
+function showData() {
+    taskList.innerHTML = localStorage.getItem("data");
+}
+
+showData();
 
