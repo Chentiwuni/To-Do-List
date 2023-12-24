@@ -55,6 +55,12 @@ function addTask() {
         let editButton = createEditButton();
         let closeButton = createCloseButton();
 
+        // Attach touch event listener for swipe right
+        taskContent.addEventListener('touchstart', handleSwipeStart);
+        taskContent.addEventListener('touchend', handleSwipeEnd);
+
+
+
         taskList.appendChild(taskContent);
         taskList.appendChild(editButton);
         taskList.appendChild(closeButton);
@@ -65,6 +71,25 @@ function addTask() {
 
     taskField.value = "";
 }
+
+// Function to handle touch start
+function handleSwipeStart(e) {
+    // Record the starting position of the touch
+    startX = e.changedTouches[0].clientX;
+}
+
+// Function to handle touch end
+function handleSwipeEnd(e) {
+    // Calculate the distance moved
+    let distance = e.changedTouches[0].clientX - startX;
+
+    // Check if the distance moved is sufficient for a swipe
+    if (distance > 50) {
+        // Swipe right detected, call the handleCloseTaskClick function
+        handleCloseTaskClick(e);
+    }
+}
+
 
 //function for closing task
 function handleTaskContentClick(e) {
