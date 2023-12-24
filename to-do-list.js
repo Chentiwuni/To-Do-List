@@ -1,90 +1,140 @@
 let taskField = document.getElementById('taskField');
-let taskAmount = document.getElementById('amountField');
 let btn = document.getElementById('btn');
 let taskContainer = document.getElementById('taskContainer');
+let taskList = document.getElementById('taskList');
 
-//function for adding tasks
+//setting taskToEdit, editBackground,editField and editImageDiv global
+let taskToEdit;
+let editBackground;
+let editImageDiv;
+let editField;
+
+//function for creating task content: parameter "taskText" will be replaced by "taskField.value" in the add task function
+function createTaskContent(taskText) {
+    let taskContent = document.createElement('div');
+    taskContent.classList.add('col-12', 'col-md-10', 'mt-3', 'taskContent');
+    taskContent.id = "taskContent";
+    taskContent.innerHTML = taskText;
+
+    return taskContent;
+}
+
+//function for creating edit button
+function createEditButton() {
+    let editImage = document.createElement('img');
+    editImage.className = "editImage";
+    editImage.src = "edit.png";
+
+    //appending the created edit image to the created edit div 
+    let edit = document.createElement('div');
+    edit.classList.add('col-1', 'col-md-1', 'mt-3', 'editTask');
+    edit.appendChild(editImage);
+
+    return edit;
+}
+
+//function for creating close button
+function createCloseButton() {
+    let closeImage = document.createElement('img');
+    closeImage.className = "closeImage";
+    closeImage.src = "closeTask.png";
+
+    let closeTask = document.createElement('div');
+    closeTask.classList.add('col-1', 'col-md-1', 'mt-3', 'closeTask');
+    closeTask.appendChild(closeImage);
+
+    return closeTask;
+}
+
+//function for adding task content to the task container: the taskContent, editTask and closeTask
 function addTask() {
     if (taskField.value === "") {
-        alert ('Task field is empty');
+        alert('Task Field is Empty')
     } else {
-        let taskItem = document.createElement("LI");
-        taskItem.className = "taskItems";
+        let taskContent = createTaskContent(taskField.value);
+        let editButton = createEditButton();
+        let closeButton = createCloseButton();
 
-        let taskContent = document.createElement("span");
-        taskContent.className = "taskContent";
-        taskContent.innerHTML = taskField.value;
+        taskList.appendChild(taskContent);
+        taskList.appendChild(editButton);
+        taskList.appendChild(closeButton);
+        taskContainer.appendChild(taskList);
 
-        let taskDecoration = document.createElement("span");
-        taskDecoration.className = "taskDecoration";
-
-        let amountDisplay = document.createElement("div");
-        amountDisplay.className = "amountDisplay";
-        amountDisplay.innerHTML = taskAmount.value;
-
-        let editTask = document.createElement("img");
-        editTask.className = "editTask";
-        editTask.src = "edit.png";
-
-        let closeTask = document.createElement("img");
-        closeTask.className = "closeTask";
-        closeTask.src = "closeTask.png";
-
-        taskItem.appendChild(taskContent);
-        taskItem.appendChild(amountDisplay);
-        taskItem.appendChild(editTask);
-        taskItem.appendChild(closeTask);
-
-        taskContainer.appendChild(taskItem);
-
-
-        taskItem.style.display = "inline-block";
+        taskField.focus();
     }
 
     taskField.value = "";
-    taskAmount.value = "";
-
 }
 
-taskContainer.addEventListener('click', function(e){
-    if (e.target.tagName === "LI" || e.target.tagName === "SPAN") {
-        e.target.classList.toggle("checked");
-        e.target.classList.toggle("taskDecoration");
+//function for closing task
+function handleTaskContentClick(e) {
+    if (e.target.classList.contains("taskContent")) {
+        e.target.classList.toggle("taskComplete");
     }
+}
 
-    else if (e.target.className === "closeTask") {
-        const confirmation = confirm("Are you sure you want to remove this task ?");
+//function for editing task
+function handleEditImageClick(e) {
+    if (e.target.className === "editImage") {
+
+        //accessing the edit field
+        editField = document.getElementById('editField');
+
+        //accessing the EditImage div
+        editImageDiv = e.target.parentElement;
+
+        //accessing the previous sibling, which is taskContent
+        taskToEdit = editImageDiv.previousElementSibling;
+
+        //updating the value of edit field with the innerHTMl of taskContent
+        editField.value = taskToEdit.innerHTML;
+
+        //accessing the edit background which is a container for the edit field
+        editBackground = document.getElementById('editBackground');
+
+        //removing the class "hidden" from edit background classes to unhide it
+        editBackground.classList.remove('hidden');
+         
+       
+    }
+}
+
+
+function handleCloseTaskClick(e) {
+    if (e.target.className === "closeImage") {
+        const confirmation = confirm("Remove this task ?");
         if (confirmation) {
-            e.target.parentElement.remove();
+            //accessing the close image div
+        const closeImageDiv = e.target.parentElement.parentElement;
 
-            
+        closeImageDiv.parentElement.remove();
         }
-    }
-
-    else if (e.target.className === "editTask") {
-        let editBackground = document.getElementById('editBackground');
-        let editContainer = document.getElementById('editContainer');
-        let taskEditField = document.getElementById('taskEditField');
-        let amountEditField = document.getElementById('amountEditField');
-        let editSaveBtn = document.getElementById('editSaveBtn');
-        let taskToEdit = e.target.parentElement;
-        
-        editBackground.style.display = "block";
-        editContainer.style.display = "block";
-        taskEditField.value = taskToEdit.querySelector('.taskContent').textContent;
-        amountEditField.value = taskToEdit.querySelector('.amountDisplay').textContent;
-
-        editSaveBtn.addEventListener('click', function() {
-            taskToEdit.querySelector('.taskContent').textContent = taskEditField.value;
-            taskToEdit.querySelector('.amountDisplay').textContent = amountEditField.value;
-
-            editBackground.style.display = "none";
-            editContainer.style.display = "none";
-
-        })
-        
-
-
 
     }
+}
+
+// Set up event listeners
+taskContainer.addEventListener('click', handleTaskContentClick);
+taskContainer.addEventListener('click', handleEditImageClick);
+taskContainer.addEventListener('click', handleCloseTaskClick);
+
+let saveEdit = document.getElementById('editSave');
+
+saveEdit.addEventListener('click', function() {
+
+    //access the edit field
+
+    //update the innerHTML of taskContent with edit field
+    taskToEdit.innerHTML = editField.value;
+
+    //hide back edit backgroun
+    editBackground.classList.add('hidden');
 })
+
+//event listener for "keyup" on inputField for the "enter" key
+taskField.addEventListener('keyup', function (event) {
+    if (event.key === 'Enter') {
+        addTask();
+    }
+});
+
