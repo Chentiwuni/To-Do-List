@@ -176,3 +176,4 @@ function showData() {
 
 showData();
 
+taskField.focus();
