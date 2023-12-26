@@ -40,7 +40,7 @@ function createCloseButton() {
     closeImage.src = "closeTask.png";
 
     let closeTask = document.createElement('div');
-    closeTask.classList.add('col-8', 'col-md-1', 'mt-3', 'mx-auto' , 'closeTask');
+    closeTask.classList.add('col-10', 'col-md-1', 'mt-3', 'mx-auto' , 'closeTask');
     closeTask.appendChild(closeImage);
 
     return closeTask;
