@@ -13,7 +13,6 @@ let editField;
 function createTaskContent(taskText) {
     let taskContent = document.createElement('div');
     taskContent.classList.add('col-12', 'col-md-10', 'mt-3', 'taskContent');
-    taskContent.id = "taskContent";
     taskContent.innerHTML = taskText;
 
     return taskContent;
@@ -67,15 +66,7 @@ function addTask() {
     saveData();
 }
 
-
-//function for closing task
-function handleTaskContentClick(e) {
-    if (e.target.classList.contains("taskContent")) {
-        e.target.classList.toggle("taskComplete");
-    }
-}
-
-//function for closing task
+//function for toggling task content classes
 function handleTaskContentClick(e) {
     if (e.target.classList.contains("taskContent")) {
         e.target.classList.toggle("taskComplete");
